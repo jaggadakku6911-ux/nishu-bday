@@ -59,25 +59,6 @@
     .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 18px; }
     .tag { background: #fff0f3; padding: 6px 12px; border-radius: 15px; font-size: 0.85rem; box-shadow: 0 2px 6px rgba(0,0,0,0.08); font-weight: 600; }
 
-    /* Photo Cards */
-    .photo-card {
-      background: #fff; padding: 12px 12px 18px 12px; border-radius: 18px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.14); width: 270px; margin-bottom: 14px;
-      cursor: pointer; transition: transform 0.3s ease;
-      position: relative;
-    }
-    .photo-card img {
-      width: 100%; height: 270px; object-fit: cover;
-      border-radius: 12px; margin-bottom: 10px;
-      background: #fce4ec;
-    }
-    .photo-caption { font-family: 'Caveat', cursive; font-size: 1.65rem; color: #ad1457; font-weight: 700; }
-    .photo-counter {
-      position: absolute; top: 20px; right: 20px;
-      background: rgba(216, 27, 96, 0.85); color: #fff;
-      font-size: 0.75rem; padding: 4px 10px; border-radius: 12px; font-weight: 600;
-    }
-
     /* Envelope & Scrollable Letter */
     .envelope { font-size: 6rem; cursor: pointer; animation: float 2.5s infinite ease-in-out; margin: 20px 0; }
     .letter-box {
@@ -152,23 +133,11 @@
       <span class="tag">I'm lucky to have you 🥰</span>
       <span class="tag">My favorite person 💕</span>
     </div>
-    <button class="btn" onclick="nextScreen(5)">Sweet Moments 📸</button>
+    <button class="btn" onclick="nextScreen(5)">Read My Message 💌</button>
   </div>
 
-  <!-- Screen 5: Sweet Moments (pic1 to pic5) -->
+  <!-- Screen 5: Envelope & Special Long Message (Photos removed directly to letter) -->
   <div class="screen" id="s5">
-    <h1>Some Sweet Moments 💖</h1>
-    <p>(Tap the photo card to see next ✨)</p>
-    <div class="photo-card" onclick="nextPhoto()">
-      <span class="photo-counter" id="photoCounter">1 / 5</span>
-      <img id="cardImg" src="pic1.jpg" alt="Nidhi" />
-      <div class="photo-caption" id="cardCaption">Phoolon se bhi zyada khoobsurat 🌸💕</div>
-    </div>
-    <button class="btn" onclick="nextScreen(6)">Read My Message 💌</button>
-  </div>
-
-  <!-- Screen 6: Envelope & Special Long Message -->
-  <div class="screen" id="s6">
     <h1>A Message From My Heart 💌</h1>
     <p id="envHint">Tap the envelope to open</p>
     <div class="envelope" id="envIcon" onclick="openLetter()">✉️</div>
@@ -184,11 +153,11 @@
       <b>ur pugguuuu 💕</b>
     </div>
 
-    <button class="btn" id="toGiftBtn" style="display:none;" onclick="nextScreen(7)">One Last Thing... 🎁</button>
+    <button class="btn" id="toGiftBtn" style="display:none;" onclick="nextScreen(6)">One Last Thing... 🎁</button>
   </div>
 
-  <!-- Screen 7: One Last Thing -->
-  <div class="screen" id="s7">
+  <!-- Screen 6: One Last Thing -->
+  <div class="screen" id="s6">
     <h1>One Last Thing... ✨</h1>
     <p id="giftHint">Tap the gift box!</p>
     <div class="gift-box" id="giftIcon" onclick="openGift()">🎁</div>
@@ -202,15 +171,6 @@
 
   <script>
     let poppedCount = 0;
-
-    const photos = [
-      { src: "pic1.jpg", caption: "Phoolon se bhi zyada khoobsurat 🌸💕" },
-      { src: "pic2.jpg", caption: "My cutest little butterfly 🦋🥰" },
-      { src: "pic3.jpg", caption: "Effortlessly gorgeous, always ✨❤️" },
-      { src: "pic4.jpg", caption: "Simplicity level: Mera Dil ле Gayi 💗" },
-      { src: "pic5.jpg", caption: "Happy 18th Birthday Piduu Bchaa! 🎂😘" }
-    ];
-    let photoIndex = 0;
 
     function nextScreen(num) {
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -235,14 +195,7 @@
 
     function blowCandle() {
       document.getElementById('cake').innerHTML = '🍰✨🎉';
-      setTimeout(() => nextScreen(4), 900);
-    }
-
-    function nextPhoto() {
-      photoIndex = (photoIndex + 1) % photos.length;
-      document.getElementById('cardImg').src = photos[photoIndex].src;
-      document.getElementById('cardCaption').innerText = photos[photoIndex].caption;
-      document.getElementById('photoCounter').innerText = (photoIndex + 1) + " / " + photos.length;
+      setTimeout(() => nextScreen(5), 900);
     }
 
     function openLetter() {
